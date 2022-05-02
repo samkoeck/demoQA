@@ -24,9 +24,8 @@ async function FillInForm(){
         driver.findElement(By.xpath("//label[@for='gender-radio-1']")).click();
         driver.findElement(By.id("userNumber")).sendKeys('0485157642');
         driver.findElement(By.id("userForm")).submit();
-        driver.findElement(By.id("userForm")).submit();
-        await sleep(5000)
-        //It is always a safe practice to quit the browser after execution
+
+        //It is always a safe practice to quit the browser after executio
         await driver.quit();
  
 }
