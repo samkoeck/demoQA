@@ -1,9 +1,12 @@
-const {By,Key,Builder} = require("selenium-webdriver");
+const {By,Keys,Builder} = require("selenium-webdriver");
 require("chromedriver");
+const {firstName} = require('./pageObjects/form.po');
+
+async function sleep(msec) {
+    return new Promise(resolve => setTimeout(resolve, msec));
+}
  
-async function example(){
- 
-       var searchString = "Automation testing with Selenium";
+async function FillInForm(){
  
        //To wait for browser to build and launch properly
        let driver = await new Builder().forBrowser("chrome").build();
@@ -14,10 +17,18 @@ async function example(){
         //Verify the page title and print it
         var title = await driver.getTitle();
         console.log('Title is:',title);
- 
+
+        driver.findElement(By.id("firstName")).sendKeys('Sam');
+        driver.findElement(By.id("lastName")).sendKeys('Koeck');
+        // driver.findElement(By.id("userEmail")).sendKeys('samkoeck@gmail.com');
+        driver.findElement(By.xpath("//label[@for='gender-radio-1']")).click();
+        driver.findElement(By.id("userNumber")).sendKeys('0485157642');
+        driver.findElement(By.id("userForm")).submit();
+        driver.findElement(By.id("userForm")).submit();
+        await sleep(5000)
         //It is always a safe practice to quit the browser after execution
         await driver.quit();
  
 }
  
-example()
+FillInForm()
